@@ -2,21 +2,11 @@ package main
 
 import (
 	"fmt"
-	tea "github.com/charmbracelet/bubbletea"
 	"net/http"
 	"os"
 	"time"
-)
 
-package main
-
-import (
-"fmt"
-"net/http"
-"os"
-"time"
-
-tea "github.com/charmbracelet/bubbletea"
+	tea "github.com/charmbracelet/bubbletea"
 )
 
 const url = "https://charm.sh/"

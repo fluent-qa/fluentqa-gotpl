@@ -4,14 +4,29 @@
 LOCAL_BIN:=$(CURDIR)/bin
 PATH:=$(LOCAL_BIN):$(PATH)
 
-test: ### run test
-	go test -v -cover -race ./internal/...
-.PHONY: test
+.PHONY: build
+build:
+	# @go build -ldflags "-X main.version=$(shell git describe --abbrev=0 --tags)" -o $(projectname)
+	go build cmd/fluent.go
+
+PHONY: test
+test: ## run go tests
+	go test -v ./...
+
 
 integration-test: ### run integration-test
 	go clean -testcache && go test -v ./integration-test/...
 .PHONY: integration-test
 
-build-fluent:
+
+.PHONY: build-cli
+build-cli:
 	go build cmd/fluent.go
-.PHONY: build-base
+
+.PHONY: format
+format:
+	gofmt -l -w .
+
+.PHONY: fmtcheck
+fmtcheck: ## run gofmt and print detected files
+	@sh -c "'$(CURDIR)/ci/scripts/goformat.sh'"
