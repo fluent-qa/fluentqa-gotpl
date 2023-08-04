@@ -1,6 +1,8 @@
 # IDE
 .idea
 .vscode
+/storage/
+*.log
 
 # Config
 .env
